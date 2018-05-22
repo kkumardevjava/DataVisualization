@@ -724,25 +724,25 @@ d3.csv("data3.csv", function(d, i, columns) {
   for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
   d.total = t;
   return d;
-}, function(error, data) {
+}, function(error, data3) {
   if (error) throw error;
 
-  var keys = data.columns.slice(1);
+  var keys = data3.columns.slice(1);
 
-  data.sort(function(a, b) { return b.total - a.total; });
-  x.domain(data.map(function(d) { return d.State; }));
-  y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
+  data3.sort(function(a, b) { return b.total - a.total; });
+  x.domain(data3.map(function(d) { return d.State; }));
+  y.domain([0, d3.max(data3, function(d) { return d.total; })]).nice();
   z.domain(keys);
 
   g.append("g")
     .selectAll("g")
-    .data(d3.stack().keys(keys)(data))
+    .data3(d3.stack().keys(keys)(data3))
     .enter().append("g")
       .attr("fill", function(d) { return z(d.key); })
     .selectAll("rect")
-    .data(function(d) { return d; })
+    .data3(function(d) { return d; })
     .enter().append("rect")
-      .attr("x", function(d) { return x(d.data.State); })
+      .attr("x", function(d) { return x(d.data3.State); })
       .attr("y", function(d) { return y(d[1]); })
       .attr("height", function(d) { return y(d[0]) - y(d[1]); })
       .attr("width", x.bandwidth());
